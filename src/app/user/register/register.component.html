@@ -1,41 +1,30 @@
-<form [formGroup]="registerForm"  >
+<app-alert *ngIf="showMsg" color="blue">{{alertMsg}}</app-alert>
+
+<form [formGroup]="registerForm" (ngSubmit)="register()"  >
   <!-- Name -->
   <div class="mb-3">
     <label class="inline-block mb-2">Name</label>
-    <input formControlName="name" type="text"
-           class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-           placeholder="Enter Name" />
-   <p class="text-red-500" *ngIf="registerForm.controls.name.touched && registerForm.controls.name.errors?.required">
-     name is required
-   </p>
-    <p class="text-red-500" *ngIf="registerForm.controls.name.touched && registerForm.controls.name.errors?.minlength ">
-      name is {{registerForm.controls.name.errors?.minlength.actualLength}}
-    </p>
+    <app-input [control]="name" type="text" placeholder="Enter name ..."></app-input>
+
   </div>
   <!-- Email -->
   <div class="mb-3">
     <label class="inline-block mb-2">Email</label>
-    <input formControlName="email" type="email"
-           class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-           placeholder="Enter Email" />
-
+    <app-input [control]="email" type="email" placeholder="Enter email..." ></app-input>
   </div>
   <!-- Age -->
   <div class="mb-3">
     <label class="inline-block mb-2">Age</label>
-    <input formControlName="age" type="number"
-           class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400" />
+    <app-input [control]="age" type="number"></app-input>
   </div>
   <!-- Password -->
   <div class="mb-3">
     <label class="inline-block mb-2">Password</label>
-    <input formControlName="password" type="password"
-           class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-           placeholder="Password" />
+    <app-input [control]="password" type="password" placeholder="Enter password..."></app-input>
+<!--    <input formControlName="password" type="password"-->
+<!--           class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition-->
+<!--                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"-->
+<!--           placeholder="Password" />-->
   </div>
   <!-- Confirm Password -->
   <div class="mb-3">
@@ -48,14 +37,11 @@
   <!-- Phone Number -->
   <div class="mb-3">
     <label class="inline-block mb-2">Phone Number</label>
-    <input formControlName="phoneNumber" type="text"
-           class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
-                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-           placeholder="Enter Phone Number" />
+  <app-input placeholder="enter phone number..." [control]="phoneNumber" format="(000) 000-0000" ></app-input>
   </div>
   <button type="submit"
           class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
-                hover:bg-indigo-500">
+                hover:bg-indigo-500 disabled:opacity-50 hover:bg-indigo-400" [disabled]="registerForm.invalid">
     Submit
   </button>
 </form>

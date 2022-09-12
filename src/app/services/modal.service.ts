@@ -22,7 +22,7 @@ export class ModalService {
 
 
   isOpenModal(id: string){
-    console.log(this.modals.find(item => item.id === id)?.visible)
+
     return !!this.modals.find(item => item.id === id)?.visible;
   }
 
