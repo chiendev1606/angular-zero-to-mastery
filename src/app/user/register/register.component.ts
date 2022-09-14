@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {AngularFireAuth} from "@angular/fire/compat/auth";
-import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {RegisterService} from "../../services/register.service";
 import {IUser} from "../../models/user.model";
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-register',
@@ -12,7 +10,7 @@ import {IUser} from "../../models/user.model";
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private registerService: RegisterService) {
+  constructor(private auth: AuthService) {
   }
 
 
@@ -48,8 +46,7 @@ export class RegisterComponent implements OnInit {
 
 
     this.loading = true;
-
-    const hasCreated = await this.registerService.createUser(this.registerForm.value as IUser)
+    const hasCreated = await this.auth.createUser(this.registerForm.value as IUser)
 
     if(hasCreated){
       this.showMsg = true;
@@ -61,13 +58,7 @@ export class RegisterComponent implements OnInit {
       this.alertMsg = 'an unexpected occur. please try again later'
       this.bgColor = 'red';
     }
-
-
       this.loading = false;
-
-
-
-
 
   }
 
