@@ -1,4 +1,4 @@
-<app-alert *ngIf="showMsg" color="blue">{{alertMsg}}</app-alert>
+<app-alert *ngIf="showMsg" [color]="bgColor">{{alertMsg}}</app-alert>
 
 <form [formGroup]="registerForm" (ngSubmit)="register()"  >
   <!-- Name -->
@@ -41,7 +41,7 @@
   </div>
   <button type="submit"
           class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition
-                hover:bg-indigo-500 disabled:opacity-50 hover:bg-indigo-400" [disabled]="registerForm.invalid">
+                hover:bg-indigo-500 disabled:opacity-50 hover:bg-indigo-400" [disabled]="registerForm.invalid || this.loading ">
     Submit
   </button>
 </form>
