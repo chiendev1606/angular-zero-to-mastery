@@ -22,7 +22,14 @@
   </p>
 
   <p class="text-red-500" *ngIf="control.errors?.pattern">
-    Password at least 8 characters ,must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number ,Can contain special characters
+    Password at least 8 characters ,must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number ,Can
+    contain special characters
+  </p>
+  <p class="text-red-500" *ngIf="control.errors?.notMatch">
+    Confirm password not match
+  </p>
+  <p class="text-red-500" *ngIf="control.errors?.emailTaken">
+    Email already taken. please try again
   </p>
 
 

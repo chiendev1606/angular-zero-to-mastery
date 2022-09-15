@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,31 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
-  constructor() { }
+  showAlert = false;
+  alertMsg  = '';
+  alertColor = 'blue';
+  inSubmission = false;
+
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
-  login(){
+  async login(){
+      this.showAlert = true;
+    this.inSubmission = true;
+    this.alertMsg = 'Please wait ! we are logging your account'
+    try {
+      const res = await this.auth.login(this.loginInfo.email, this.loginInfo.password);
+       this.showAlert = false;
+       this.inSubmission = false;
+    } catch (e){
+      console.log(e)
+      this.alertColor = 'red';
+      this.alertMsg = 'Error occur ! please try again !'
+      this.inSubmission = false;
+      return;
+    }
 
   }
 
