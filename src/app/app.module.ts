@@ -10,16 +10,21 @@ import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import {UserModule} from "./user/user.module";
 import {environment} from "../environments/environment";
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import {VideoModule} from "./video/video.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
+    HomeComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, UserModule, AngularFireModule.initializeApp(environment.firebase), AngularFireAuthModule,AngularFirestoreModule
+    AppRoutingModule, UserModule, AngularFireModule.initializeApp(environment.firebase), AngularFireAuthModule,AngularFirestoreModule, VideoModule
   ],
   providers: [],
   bootstrap: [AppComponent]
