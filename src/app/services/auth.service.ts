@@ -10,7 +10,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
   providedIn: 'root'
 })
 export class AuthService {
-  private redirect = false;
+  redirect = false;
   userCollection: AngularFirestoreCollection<IUser>;
   isAuthenticated$: Observable<boolean>;
   isAuthenticatedWithDelay$: Observable<boolean>;
@@ -19,10 +19,12 @@ export class AuthService {
     this.userCollection = db.collection('users')
     this.isAuthenticated$ = auth.user.pipe(map(user => !!user))
     this.isAuthenticatedWithDelay$ = this.isAuthenticated$.pipe(delay(1000))
+
     router.events.pipe(filter(e => e instanceof NavigationEnd), map(e => this.activeRoute.firstChild), switchMap(route => route?.data ?? of({}))).subscribe((data) => {
       this.redirect = data.authOnly ?? false
     })
   }
+
 
   async createUser(userData: IUser) {
     try {
@@ -47,6 +49,7 @@ export class AuthService {
   async login(email: string, password: string) {
     return this.auth.signInWithEmailAndPassword(email, password);
   }
+
 
   async logout($event: Event) {
     $event.preventDefault();

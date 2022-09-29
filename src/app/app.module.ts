@@ -1,18 +1,20 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 import {AngularFireModule} from '@angular/fire/compat'
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { NavComponent } from './nav/nav.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {NavComponent} from './nav/nav.component';
 import {UserModule} from "./user/user.module";
 import {environment} from "../environments/environment";
-import { HomeComponent } from './home/home.component';
-import { AboutComponent } from './about/about.component';
+import {HomeComponent} from './home/home.component';
+import {AboutComponent} from './about/about.component';
 import {VideoModule} from "./video/video.module";
+import {NotFoundComponent} from './not-found/not-found.component';
+
 
 
 @NgModule({
@@ -21,12 +23,18 @@ import {VideoModule} from "./video/video.module";
     NavComponent,
     HomeComponent,
     AboutComponent,
+    NotFoundComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule, UserModule, AngularFireModule.initializeApp(environment.firebase), AngularFireAuthModule,AngularFirestoreModule, VideoModule
+    UserModule, AngularFireModule.initializeApp(environment.firebase), AngularFireAuthModule, AngularFirestoreModule, VideoModule, AppRoutingModule
   ],
   providers: [],
+  exports: [
+
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
